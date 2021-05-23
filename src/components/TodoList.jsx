@@ -7,20 +7,17 @@ import { getTodos } from './../actions/todoActions';
 const TodoList = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log('todo: ' ,state);
   useEffect(() => {
     dispatch(getTodos())
-  }, [])
+  }, [dispatch])
+  const { todos } = state.todos;
 
-
-  const renderCard = () => {
+  const renderCard = (todo) => {
     return (
-    <Card>
+    <Card key={todo.id} style={{ marginTop: '5px', marginBottom: '5px'}}>
       <CardContent>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'Test text'}
+          {todo.title}
         </Typography>
       </CardContent>
       <CardActions>
@@ -33,7 +30,7 @@ const TodoList = () => {
   return (
     <>
       <div>
-        { renderCard() }
+        { todos.length > 0 ?  todos.map(todo => renderCard(todo)) : 'No data to display '}
       </div>
     </>
   )

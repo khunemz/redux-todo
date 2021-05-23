@@ -21,7 +21,7 @@ export const getTodos = () => async (dispatch) => {
   const res = await axios.get(`${url}`);
   dispatch({
     type: GET_TODOS,
-    payload: res.data,
+    payload: res.data.sort((a, b) => b.id - a.id),
   });
 };
 
