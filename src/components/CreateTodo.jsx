@@ -11,8 +11,7 @@ const CreateTodo = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addTodo(todo))
-    setTodo({...todo , title: e.target.value, completed: false });
-
+    setTodo({...todo , title: "", completed: false });
   }
   return (
     <>

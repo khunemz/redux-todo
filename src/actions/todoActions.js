@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_TODO, GET_TODOS } from './types';
+import { GET_TODO, GET_TODOS, UPDATE_TODO } from './types';
 
 const url = 'https://jsonplaceholder.typicode.com/todos';
 
@@ -21,7 +21,7 @@ export const getTodos = () => async (dispatch) => {
   const res = await axios.get(`${url}`);
   dispatch({
     type: GET_TODOS,
-    payload: res.data.sort((a, b) => b.id - a.id),
+    payload: res.data,
   });
 };
 
@@ -34,3 +34,14 @@ export const getTodo = (id) => async (dispatch) => {
   });
 };
 
+
+export const updateTodo = (todo) => async (dispatch) => {
+  const res = await axios.put(
+    `${url}/${todo.id}`,
+    todo
+  );
+  dispatch({
+    type: UPDATE_TODO,
+    payload: res.data,
+  });
+};
