@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './TodoList.module.css'
 import {Card, CardActions, CardContent,Typography, Button} from '@material-ui/core';
 
-import { getTodos , updateTodo} from './../actions/todoActions';
+import { getTodos , updateTodo , deleteTodo} from './../actions/todoActions';
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -22,6 +22,10 @@ const TodoList = () => {
     dispatch(updateTodo(updTodo))
   }
 
+  const removeTodo = (id) => {
+    dispatch(deleteTodo(id))
+  }
+
   const renderCard = (todo) => {
     return (
     <Card key={uuidv4()} style={{ marginTop: '5px', marginBottom: '5px'}} className={ todo.completed ? "completed" : ""}>
@@ -32,7 +36,7 @@ const TodoList = () => {
       </CardContent>
       <CardActions>
         <Button size="small" onClick={() => completeTodo(todo)}>Complete</Button>
-        <Button size="small">Delete</Button>
+        <Button size="small" onClick={() => removeTodo(todo.id)}>Delete</Button>
       </CardActions>
     </Card>
     );

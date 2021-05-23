@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_TODO, GET_TODOS, UPDATE_TODO } from './types';
+import { GET_TODO, GET_TODOS, UPDATE_TODO ,DELETE_TODO} from './types';
 
 const url = 'https://jsonplaceholder.typicode.com/todos';
 
@@ -43,5 +43,14 @@ export const updateTodo = (todo) => async (dispatch) => {
   dispatch({
     type: UPDATE_TODO,
     payload: res.data,
+  });
+};
+
+
+export const deleteTodo = (id) => async (dispatch) => {
+  await axios.delete(`${url}/${id}`);
+  dispatch({
+    type: DELETE_TODO,
+    payload: id,
   });
 };
