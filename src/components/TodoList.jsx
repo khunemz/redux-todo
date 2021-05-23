@@ -31,7 +31,7 @@ const TodoList = () => {
     <Card key={uuidv4()} style={{ marginTop: '5px', marginBottom: '5px'}} className={ todo.completed ? "completed" : ""}>
       <CardContent>
         <Typography variant="body2" component="p">
-          {todo.title}
+          {todo.title } {'[Completed ? ' } { todo.completed ? 'TRUE' : 'FALSE'} {']'}
         </Typography>
       </CardContent>
       <CardActions>
